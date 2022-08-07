@@ -13,6 +13,10 @@ const socketIo = new Server(server, { cors: { credentials: true } });
 app.use(require("cors")({ credentials: true }));
 socket(socketIo);
 
+app.get("/", (req, res) => {
+  res.status(200).json({ "hello": "world" });
+});
+
 server.listen(2134, () => {
   console.log("Server listen : http://localhost:2134");
 });
