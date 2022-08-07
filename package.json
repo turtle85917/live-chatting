@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "vercel dev",
-    "start": "vercel deploy --prod"
+    "start": "tsc --build & node dist/Server.js"
   },
   "keywords": [],
   "author": "",
