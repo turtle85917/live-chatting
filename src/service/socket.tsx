@@ -9,11 +9,11 @@ export const makeMessage = (pongData: IPingPongData): IMessage => {
   const { prevNickname, nickname, content, type, time } = pongData;
 
   let nicknameLabel = "";
-  let contentLabel = "";
+  let contentLabel: string | undefined = undefined;
 
   switch (type) {
     case SOCKET_EVENT.JOIN_ROOM: {
-      contentLabel = `앗! 야생의 ${nickname || "GUEST"} 님이 나타났다!\n 🎈 참고로 이름을 한 번 바꾸셔야 활동이 가능합니다.`;
+      if (nickname) contentLabel = `앗! 야생의 ${nickname || "GUEST"} 님이 나타났다!\n 🎈 참고로 이름을 한 번 바꾸셔야 활동이 가능합니다.`;
       break;
     }
     case SOCKET_EVENT.UPDATE_NICKNAME: {
@@ -33,7 +33,7 @@ export const makeMessage = (pongData: IPingPongData): IMessage => {
 
   return {
     nickname: nicknameLabel,
-    content: contentLabel || undefined,
+    content: contentLabel,
     time: `${am ? "오전" : "오후"} ${(createdAt.getHours() - 12).toString().padStart(2, "0")}:${createdAt.getMinutes().toString().padStart(2, "0")}`
   };
 };

@@ -35,7 +35,7 @@ export default function MessageForm({ nickname }: P) {
           }}
           onKeyDown={(event) => {
             if (event.key === "Enter" && !event.shiftKey) {
-              handleSendContent();
+              if (nickname) handleSendContent();
               event.preventDefault();
             }
           }}
