@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { socketContext, SOCKET_EVENT } from "../../service/socket";
 
+import { BAD } from "../../main";
+
 interface P {
   nickname: string;
 }
@@ -16,7 +18,7 @@ export default function MessageForm({ nickname }: P) {
     }
 
     socket.emit(SOCKET_EVENT.SEND_MESSAGE, {
-      nickname, content
+      nickname, content: content.replace(BAD, "##")
     });
     setTypingMessage("");
     (document.querySelector("textarea#content") as HTMLTextAreaElement).value = "";

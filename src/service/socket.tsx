@@ -3,7 +3,7 @@ import socketIo from "socket.io-client";
 
 export const socket = socketIo(import.meta.env.VITE_BACKEND_URL, { withCredentials: true });
 export const socketContext = createContext(socket);
-export const SOCKET_EVENT = { JOIN_ROOM: "JOIN_ROOM", UPDATE_NICKNAME: "UPDATE_NICKNAME", SEND_MESSAGE: "SEND_MESSAGE", RECEIVE_MESSAGE: "RECEIVE_MESSAGE" };
+export const SOCKET_EVENT = { JOIN_ROOM: "JOIN_ROOM", UPDATE_NICKNAME: "UPDATE_NICKNAME", SEND_MESSAGE: "SEND_MESSAGE", RECEIVE_MESSAGE: "RECEIVE_MESSAGE", DISSCONNECT: "DISSCONNECT" };
 
 export const makeMessage = (pongData: IPingPongData): IMessage => {
   const { prevNickname, nickname, content, type, time } = pongData;
@@ -23,6 +23,10 @@ export const makeMessage = (pongData: IPingPongData): IMessage => {
     case SOCKET_EVENT.SEND_MESSAGE: {
       contentLabel = String(content);
       nicknameLabel = nickname;
+      break;
+    }
+    case SOCKET_EVENT.DISSCONNECT: {
+      contentLabel = `${nickname} 님이 채팅방을 나가셨습니다. 다시 돌아와주시겠죠...?`
       break;
     }
     default:

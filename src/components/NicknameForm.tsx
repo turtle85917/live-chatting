@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { BAD } from "../main";
 
 interface P {
   handleSumbitNickname: (nickname: string) => void;
@@ -25,7 +26,7 @@ export default class NicknameForm extends Component<P, S> {
           <label className="text-gray-700 text-base font-bold mr-1" style={{ width: 60 }}>닉네임</label>
           {
             this.state?.change
-            ? (<>은 더 이상 바꿀 수 없습니다.</>)
+            ? (<>을 더 이상 바꿀 수 없습니다.</>)
             : (<>
               <input
                 type="text"
@@ -42,7 +43,7 @@ export default class NicknameForm extends Component<P, S> {
                 onClick={(event) => {
                   if (!this.state?.nickname.trim()) return;
 
-                  this.props.handleSumbitNickname(this.state?.nickname.trim() || "GUEST");
+                  this.props.handleSumbitNickname(this.state?.nickname.replace(BAD, "#").trim() || "GUEST");
                   this.setState({ nickname: "", change: true });
               }} >확인</button>
             </>)
