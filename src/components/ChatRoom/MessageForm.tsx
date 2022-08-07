@@ -23,7 +23,7 @@ export default function MessageForm({ nickname }: P) {
   };
 
   return (
-    <form className="rounded-lg overflow-hidden shadow-lg px-6 py-5">
+    <form className="rounded-lg overflow-hidden shadow-lg px-6 py-5 absolute left-0 bottom-0 w-full border-x-0">
       <div className="flex items-center">
         <textarea
           className="resize-none shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-1 w-full"

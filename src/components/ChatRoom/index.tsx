@@ -42,9 +42,9 @@ export default function ChatRoom({ nickname }: P) {
           : (<>이름을 변경해주세요.</>)
         }
       </div>
-      <div className="rounded-lg overflow-hidden shadow-lg px-6 py-4" ref={chatWindow}>
+      <div className="rounded-lg overflow-hidden shadow-lg px-6 py-auto" ref={chatWindow}>
         {messages.map((message, idx) => (
-          <div key={idx} className="flex mt-5 border-b-2 mt-2">
+          <div key={idx} className="flex border-b-2 mt-2">
             {message.nickname && <div className="font-bold mr-3">{message.nickname}</div>}
             <div>
               <pre>{message.content}</pre>
