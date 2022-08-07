@@ -17,10 +17,8 @@ function App() {
   }, [prevNickname.current]);
 
   useEffect(() => {
-    return () => {
-      socket.emit(SOCKET_EVENT.JOIN_ROOM, { nickname });
-    };
-  }, []);
+    socket.emit(SOCKET_EVENT.JOIN_ROOM, { nickname });
+  }, [nickname]);
 
   return (
     <socketContext.Provider value={socket}>
